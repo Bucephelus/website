@@ -32,22 +32,12 @@ export const researchInterests = [
   {
     title: "data-driven dynamical systems",
     description:
-      "learning governing equations and low-dimensional representations of nonlinear systems using techniques such as system identification.",
-  },
-  {
-    title: "reduced-order modelling",
-    description:
-      "implementing efficient low-dimensional models of high-dimensional physical systems to enable fast simulation, control, and real-time prediction.",
+      "learning governing equations and low-dimensional representations of nonlinear systems using techniques such as system identification and reduced order modelling.",
   },
   {
     title: "nonlinear dynamics",
     description:
       "studying emergent behaviour, instabilities, and pattern formation in nonlinear systems arising in physics and engineering.",
-  },
-  {
-    title: "optimisation",
-    description:
-      "optimisation methods for learning, control, and model discovery in complex systems.",
   },
   {
     title: "computational physics",

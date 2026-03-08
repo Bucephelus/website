@@ -36,11 +36,11 @@ export default function Home() {
         <h2 className="text-lg font-medium text-foreground">
           research interests
         </h2>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2">
           {researchInterests.map((interest) => (
             <div
               key={interest.title}
-              className="rounded-lg border border-border bg-card p-4 space-y-2"
+              className="rounded-lg border border-border bg-card p-4 space-y-2 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-[0_0_12px_rgba(167,139,250,0.08)]"
             >
               <h3 className="text-sm font-medium text-foreground">
                 {interest.title}

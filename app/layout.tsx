@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
+import ThemeToggle from "./components/theme-toggle";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -19,13 +20,25 @@ export const metadata: Metadata = {
     "phd researcher in data-driven engineering and science at the university of bristol.",
 };
 
+const themeScript = `
+  (function() {
+    var t = localStorage.getItem('theme');
+    if (t) {
+      document.documentElement.setAttribute('data-theme', t);
+    }
+  })();
+`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
@@ -34,7 +47,7 @@ export default function RootLayout({
             <Link href="/" className="font-medium text-foreground no-underline hover:no-underline">
               bucephelus
             </Link>
-            <div className="flex gap-6 text-sm">
+            <div className="flex items-center gap-6 text-sm">
               <Link href="/" className="text-muted hover:text-foreground transition-colors">
                 home
               </Link>
@@ -44,6 +57,7 @@ export default function RootLayout({
               <Link href="/notes" className="text-muted hover:text-foreground transition-colors">
                 notes
               </Link>
+              <ThemeToggle />
             </div>
           </nav>
         </header>

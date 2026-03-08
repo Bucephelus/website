@@ -4,7 +4,7 @@ import { getAllNotes } from "@/lib/notes";
 
 export const metadata: Metadata = {
   title: "notes — jason mclaren",
-  description: "technical notes and writing.",
+  description: "some technical research notes, and writing. basically an info-dump of things that i've studied/worked on and found interesting",
 };
 
 export default function NotesPage() {
@@ -16,7 +16,7 @@ export default function NotesPage() {
         <h1 className="text-2xl font-semibold tracking-tight text-foreground">
           notes
         </h1>
-        <p className="text-muted">technical notes and writing.</p>
+        <p className="text-muted">some technical research notes, and writing. basically an info-dump of things that i've studied/worked on and found interesting</p>
       </div>
 
       <div className="space-y-6">
