@@ -16,7 +16,7 @@ export default function ProjectsPage() {
           projects
         </h1>
         <p className="text-muted">
-          research projects, tools, and open-source software.
+          
         </p>
       </div>
 

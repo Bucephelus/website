@@ -1,0 +1,302 @@
+---
+title: reinforcement learning fundamentals
+date: "10-03-2026"
+summary: a concise overview of reinforcement learning, covering MDPs, policies, value functions, exploration strategies, and the fundamental RL learning loop.
+readingTime: "10 min read"
+tags:
+  - machine learning
+  - reinforcement learning
+  - control
+  - optimisation
+  - artificial intelligence
+---
+
+## What is Reinforcement Learning?
+
+Reinforcement learning (RL) is about **learning to make sequential decisions** by interacting with an environment in order to maximise long-term reward.
+
+At each time step $t$:
+
+$$
+s_t \xrightarrow{a_t} s_{t+1}, r_t
+$$
+
+where:
+
+- $s_t$ is the **state**
+- $a_t$ is the **action**
+- $r_t$ is the **reward**
+
+The goal is to learn a **policy** that maximises the expected cumulative reward.
+
+Importantly, the agent does not control outcomes directly; actions influence **probabilities of outcomes** rather than deterministic transitions. Learning occurs through **experience and feedback from the environment**.
+
+The agent therefore seeks a policy that maximises the **expected lifetime reward**.
+
+---
+
+## The RL Interaction Loop
+
+The basic **agent–environment interaction cycle** is:
+
+1. Observe the current state
+2. Choose an action
+3. The environment returns the next state and reward
+4. Update policy or value estimates
+
+This loop continues throughout learning.
+
+---
+
+## Markov Decision Processes (MDPs)
+
+Reinforcement learning problems are commonly formalised as **Markov Decision Processes (MDPs)**.
+
+An MDP consists of:
+
+- **State space $S$** — all possible situations the agent may encounter
+- **Action space $A$** — the set of available decisions
+- **Transition dynamics**
+
+$$
+P(s'|s,a)
+$$
+
+the probability that action $a$ in state $s$ leads to state $s'$
+
+- **Reward function**
+
+$$
+R(s,a)
+$$
+
+the expected immediate reward.
+
+### The Markov Property
+
+The **Markov property** states that:
+
+> The current state contains all relevant information about the past.
+
+Formally, the future is conditionally independent of the past given the present state.
+
+---
+
+## Policy — The Agent's Behaviour
+
+A **policy** defines how the agent behaves.
+
+$$
+\pi(a|s)
+$$
+
+This represents the probability of taking action $a$ in state $s$.
+
+Policies may be:
+
+- **Deterministic**
+
+$$
+a = \pi(s)
+$$
+
+- **Stochastic**
+
+$$
+\pi(a|s)
+$$
+
+where actions are sampled probabilistically.
+
+The central goal of RL is to find the **optimal policy**
+
+$$
+\pi^*
+$$
+
+that maximises expected return.
+
+---
+
+## Value Functions — Predicting the Future
+
+Rewards in RL are often **delayed**, making learning difficult.
+
+Value functions estimate how good a state or action is in terms of **future reward**.
+
+### State Value Function
+
+$$
+V^{\pi}(s)
+$$
+
+The expected return from state $s$ when following policy $\pi$.
+
+### Action Value Function (Q-function)
+
+$$
+Q^{\pi}(s,a)
+$$
+
+The expected return after taking action $a$ in state $s$ and then following policy $\pi$.
+
+Q-functions are particularly useful for **decision-making**.
+
+---
+
+## Bellman Intuition
+
+A key idea in reinforcement learning is that value functions satisfy a **recursive relationship**.
+
+The value of a state equals:
+
+$$
+\text{immediate reward} + \text{discounted value of the next state}
+$$
+
+This recursive structure is captured by the **Bellman equations** and allows agents to learn from experience.
+
+---
+
+## Model-Based vs Model-Free RL
+
+Two broad categories of RL methods exist.
+
+### Model-Free
+
+The agent learns:
+
+- a **policy**, or
+- a **value function**
+
+directly from experience.
+
+### Model-Based
+
+The agent learns a **model of the environment**:
+
+- transition dynamics
+- reward function
+
+This enables **planning**, but accurate models are often difficult to learn.
+
+---
+
+## Exploration vs Exploitation
+
+A core challenge in RL is balancing **exploration** and **exploitation**.
+
+- **Exploitation**: choose the best known action.
+- **Exploration**: try uncertain actions to gain new information.
+
+Without exploration, agents may converge to **suboptimal behaviour**.
+
+---
+
+## Multi-Armed Bandits
+
+The **multi-armed bandit problem** is a simplified RL setting.
+
+Imagine a casino with several slot machines:
+
+- each machine produces random rewards
+- some machines are better than others
+- you must choose which machines to play over time.
+
+Each arm has an **unknown reward distribution**.
+
+Bandits can be viewed as **reinforcement learning with a single state**.
+
+The challenge again becomes exploration vs exploitation.
+
+In a sense:
+
+$$
+\text{Reinforcement Learning} = \text{Bandits} + \text{State Dynamics}
+$$
+
+---
+
+## Continuous vs Discrete Problems
+
+RL algorithms depend strongly on the structure of the state and action spaces.
+
+| Problem type | Typical method |
+|---|---|
+| Small discrete states | Tabular Q-learning |
+| Large state spaces | Function approximation |
+| Continuous actions | Policy gradient / actor-critic |
+
+---
+
+## Deep Reinforcement Learning
+
+When states become large (e.g. images, sensors), **neural networks** are used to approximate value functions or policies.
+
+Examples include:
+
+- **DQN**
+- **PPO**
+- **SAC**
+
+This combination is known as **deep reinforcement learning**.
+
+---
+
+## The RL Learning Loop
+
+Most RL algorithms follow the same high-level structure:
+
+1. **Collect experience**
+2. **Estimate value or policy**
+3. **Improve behaviour**
+4. **Repeat**
+
+This alternating process is known as:
+
+- **policy evaluation**
+- **policy improvement**
+
+---
+
+## General Taxonomy
+
+Key RL concepts include:
+
+- **Agent** — the decision maker interacting with the environment
+- **Environment** — the external system generating states and rewards
+- **State** — representation of the current situation
+- **Action** — control input applied by the agent
+- **Reward** — scalar feedback signal
+- **Return**
+
+$$
+G_t = \sum_{k=0}^{\infty} \gamma^k r_{t+k}
+$$
+
+the discounted future reward.
+
+- **Discount factor**
+
+$$
+\gamma \in [0,1]
+$$
+
+controls the importance of future rewards.
+
+Other important concepts:
+
+- **State value function**
+- **Action value function**
+- **Advantage function**
+- **Transition function**
+- **Reward function**
+- **Model-based vs model-free learning**
+
+Common exploration strategies include:
+
+- **$\epsilon$-greedy**
+- **Upper Confidence Bound (UCB)**
+- **Thompson Sampling**
+
+---

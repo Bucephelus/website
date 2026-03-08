@@ -15,7 +15,7 @@ export const bio = {
   institution: "University of Bristol",
   department: "School of Engineering Maths and Technology",
   summary:
-    "I am a PhD student on the Data-Driven Engineering and Sciences program. I work at the broad intersection of machine learning and engineering systems. In terms of application areas I am a generalist, although I have a particular interest in space physics/systems and robotics.",
+    "I am currently a PhD student on the Data-Driven Engineering and Sciences program whose research sits at the broad intersection of machine learning and engineering systems. My interests include applications in space physics/systems and robotics. This website serves as a personal portfolio of my projects, and a platform to share some of my notes and thoughts.",
   email: "qu21443@bristol.ac.uk",
   links: [
     { label: "github", href: "https://github.com/Bucephelus"},
@@ -47,7 +47,7 @@ export const researchInterests = [
   {
     title: "optimisation",
     description:
-      "optimisation methods for learning, control, and model discovery in complex systems",
+      "optimisation methods for learning, control, and model discovery in complex systems.",
   },
   {
     title: "computational physics",
@@ -58,14 +58,33 @@ export const researchInterests = [
 
 export const projects: Project[] = [
   {
-    slug: "bayesian-shm",
-    title: "bayesian structural health monitoring",
+    slug: "apodised-bragg-reflector",
+    title: "apodised bragg reflector design for low-scattering photonic waveguides",
     description:
-      "a framework for probabilistic damage detection in bridge structures using gaussian process models. the approach quantifies epistemic uncertainty in damage predictions, enabling risk-informed maintenance scheduling.",
-    tags: ["gaussian processes", "shm", "bayesian inference"],
+      "investigated the effect of apodisation profiles on sidewall Bragg reflector gratings in integrated photonic waveguides. using FDTD simulations in Lumerical, the project analysed how smoothly varying grating amplitudes reduce scattering loss and improve reflectivity by suppressing abrupt index discontinuities.",
+    tags: ["photonics", "bragg gratings", "fdtd", "lumerical", "waveguides"],
     year: 2025,
     featured: true,
-    link: "https://example.com/paper-1",
-    github: "https://github.com",
+    link: "",
+    github: "",
+  },
+
+  {
+    slug: "self-solving-brio-labyrinth",
+    title: "self-solving brio labyrinth using embedded vision control",
+    description:
+      "developed an autonomous BRIO labyrinth solver combining computer vision, path planning, and embedded control. a camera-based vision system detects the ball position in real time using OpenCV, while an A* pathfinding algorithm computes the optimal route through the maze. PID control commands servo-driven gimbal arms via an Arduino Mega to dynamically tilt the labyrinth and guide the ball to the goal.",
+    tags: [
+      "computer vision",
+      "embedded systems",
+      "control systems",
+      "path planning",
+      "opencv",
+      "arduino",
+    ],
+    year: 2024,
+    featured: false,
+    link: "",
+    github: "",
   },
 ];

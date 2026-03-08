@@ -1,0 +1,193 @@
+---
+title: the kuramoto–sivashinsky equation and spatiotemporal chaos
+date: "08-03-2026"
+readingTime: "10 min read"
+summary: the kuramoto–sivashinsky equation is one of the simplest nonlinear PDEs exhibiting instability, pattern formation, and chaos. this note explains the linear instability mechanism, numerical simulation, and bifurcation structure.
+tags:
+  - nonlinear dynamics
+  - pdes
+  - chaos
+  - fluid dynamics
+  - numerical simulation
+---
+
+Flame fronts in combustion systems don't stay flat. They develop irregular, wavy distortions known as **flutter**, driven by nonlinear instabilities that linear steady-state analysis can't explain. The **Kuramoto–Sivashinsky (KS) equation** is one of the simplest PDEs that reproduces this behaviour: long-wave instability, pattern formation, and the eventual onset of spatiotemporal chaos.
+
+This note walks through the equation, its linear stability, a numerical scheme for simulating it, and the bifurcation structure lurking underneath the chaos.
+
+---
+
+## The equation
+
+The one-dimensional KS equation describes the evolution of a scalar field $u(x,t)$ on a periodic domain:
+
+$$
+u_t = -u_{xx} - u_{xxxx} - u\, u_x
+$$
+
+for
+
+$$
+x \in [0, L]
+$$
+
+with periodic boundary conditions
+
+$$
+u(x + L, t) = u(x, t).
+$$
+
+Three terms, three competing effects:
+
+| term | role |
+|---|---|
+| $u_{xx}$ | anti-diffusion, drives long-wavelength instability |
+| $u_{xxxx}$ | hyperviscous damping, stabilises short wavelengths |
+| $u\, u_x$ | nonlinear advection, transfers energy between modes |
+
+The first term wants to blow things up. The second damps the high frequencies. The third mixes everything together. The result is a system that is simple to write down but extraordinarily rich in behaviour.
+
+---
+
+## Linear stability and the dispersion relation
+
+The flat front
+
+$$
+u(x,t) = 0
+$$
+
+is an equilibrium solution. To analyse its stability, introduce a small perturbation
+
+$$
+u(x,t) = \epsilon\, \tilde{u}(x,t), \quad 0 < \epsilon \ll 1.
+$$
+
+Neglecting the nonlinear term yields the linearised equation
+
+$$
+\tilde{u}_t = -\tilde{u}_{xx} - \tilde{u}_{xxxx}.
+$$
+
+Assuming normal mode solutions
+
+$$
+\tilde{u}(x,t) = e^{\lambda t} e^{ikx}
+$$
+
+leads to the dispersion relation
+
+$$
+\lambda(k) = k^2 - k^4.
+$$
+
+![Dispersion relation](/notes/ks/ks_dispersion.png)
+
+Modes grow when
+
+$$
+\lambda(k) > 0.
+$$
+
+This occurs for
+
+$$
+0 < |k| < 1
+$$
+
+which means only a **finite band of long-wave modes is unstable**. The most unstable mode satisfies
+
+$$
+\frac{d\lambda}{dk} = 0
+$$
+
+giving
+
+$$
+|k| = \frac{1}{\sqrt{2}}.
+$$
+
+### Preferred wavelength
+
+The corresponding spatial wavelength is approximately
+
+$$
+\lambda_{\text{space}} \approx 2\pi\sqrt{2}.
+$$
+
+On a periodic domain of length $L$, the allowed wavenumbers are discrete:
+
+$$
+k_n = \frac{2\pi n}{L}, \quad n \in \mathbb{Z}.
+$$
+
+Therefore **increasing the domain size introduces more unstable modes**, leading to progressively richer dynamics.
+
+---
+
+## Spatiotemporal chaos
+
+For sufficiently large domains the KS system evolves into **spatiotemporal chaos**.
+
+![Spatiotemporal KS dynamics](/notes/ks/ks_spacetime.png)
+
+In this regime, coherent structures continuously merge and split, the spatial profile is aperiodic, and the temporal evolution is unpredictable. No single mode dominates for long. Energy cascades between scales through the nonlinear advection term, and the solution reorganises itself indefinitely.
+
+---
+
+## Numerical method
+
+The simulation above was computed using a **Fourier pseudo-spectral method**. Spatial derivatives are computed in Fourier space via FFT, while the nonlinear term $u\, u_x$ is evaluated pointwise in physical space and transformed back.
+
+Time integration uses **ETDRK2** (Exponential Time Differencing Runge–Kutta, order 2). This integrates the stiff linear operator exactly and steps the nonlinear part explicitly, avoiding the severe time-step restrictions that plague naive explicit methods on fourth-order diffusion.
+
+The quadratic term $u\, u_x$ generates spurious high-frequency content that would alias back into the resolved spectrum. To prevent this, the **2/3 dealiasing rule** was applied by zeroing the highest third of Fourier modes at each time step.
+
+Simulation parameters:
+
+- $L = 100$
+- $N = 2048$
+- $\Delta t = 0.1$
+- initial condition:
+
+$$
+u(x,0) = \sin\!\left(\frac{16\pi x}{L}\right)
+$$
+
+---
+
+## Bifurcation structure
+
+The KS equation also exhibits a rich family of **stationary solutions**.
+
+![KS bifurcation diagram](/notes/ks/ks_bifurcation.png)
+
+To study these states the PDE was projected onto a truncated Fourier basis
+
+$$
+u(x) = \sum_{k=1}^{N} a_k \sin(kx).
+$$
+
+This converts the PDE into a system of nonlinear algebraic equations for the coefficients $a_k$. Continuation methods (e.g. pseudo-arclength continuation) then trace equilibrium branches as a control parameter varies.
+
+The diagram reveals:
+
+- multiple coexisting equilibria
+- steady-state bifurcations
+- Hopf bifurcations leading to oscillatory behaviour
+
+As the parameter increases, the phase space becomes increasingly complex, and eventually the system has so many competing attractors that chaotic dynamics become typical.
+
+---
+
+## Why do flame fronts flutter?
+
+The KS equation captures the fundamental mechanism behind flame front flutter. Small perturbations grow through linear instability. Nonlinear interactions then transfer energy between spatial modes, break up regular patterns, and generate chaotic motion. No single spatial mode dominates indefinitely. Instead the system continuously reorganises itself through instability, bifurcation, and nonlinear saturation, producing the persistent, irregular motion observed in experiments.
+
+---
+
+## References
+
+1. Hyman & Nicolaenko, *The Kuramoto–Sivashinsky Equation*, Physica D (1986)
+2. Kassam & Trefethen, *Fourth-order time stepping for stiff PDEs*, SIAM J. Sci. Comput. (2005)
+3. Evstigneev & Ryabkov, *Bifurcation diagram of stationary solutions of the KS equation* (2021)

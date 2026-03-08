@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "katex/dist/katex.min.css";
 
 :root {
   --background: #0a0a0a;
@@ -44,4 +45,33 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+/* rehype-pretty-code overrides */
+[data-rehype-pretty-code-figure] pre {
+  background: var(--card) !important;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-bottom: 1rem;
+}
+
+[data-rehype-pretty-code-figure] code {
+  background: transparent !important;
+  padding: 0;
+  border-radius: 0;
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+[data-rehype-pretty-code-figure] [data-line] {
+  padding: 0 0.25rem;
+}
+
+/* KaTeX display math spacing */
+.katex-display {
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  overflow-y: hidden;
 }

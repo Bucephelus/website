@@ -1,0 +1,303 @@
+---
+title: free-surface waves in fluid modelling
+date: "05-03-2026"
+readingTime: "10 min read"
+summary: an introduction to free-surface gravity waves, covering the governing equations, free-surface boundary conditions, the dispersion relation, and the Kelvin wake as a striking real-world consequence of linear wave theory.
+tags:
+  - fluid dynamics
+  - waves
+  - pdes
+  - applied mathematics
+  - modelling
+---
+
+## Motivation
+
+Surface waves look simple, but they contain many of the key ingredients of fluid dynamics: moving interfaces, boundary conditions, dispersion, approximation, and the interplay between physical intuition and mathematical modelling.
+
+They also matter in practice. Surface-wave models appear in:
+
+- coastal engineering
+- ship hydrodynamics
+- tsunami prediction
+- environmental flows
+
+More broadly, surface waves are a useful entry point into the study of nonlinear dynamics and continuum modelling.
+
+![Kelvin wake from a duck](/notes/fluid-waves/kelvin%20wake.jpg)
+
+---
+
+## Waves as a Universal Modelling Paradigm
+
+One reason waves are such an important topic is that they appear across physics.
+
+Waves describe how systems transmit **energy** and **information**, and how they respond to disturbances. The same broad mathematical ideas recur in many settings:
+
+- **sound waves** in compressible media
+- **electromagnetic waves** in vacuum
+- **quantum waves** in wave mechanics
+- **surface gravity waves** on fluids
+
+The physical details differ, but the mathematical structure is often similar: a restoring mechanism, a notion of propagation, and a relationship between wavelength and speed.
+
+![Comparison of wave types](/notes/fluid-waves/waves.png)
+
+---
+
+## Describing Surface Waves
+
+We consider waves travelling along the free surface of a fluid.
+
+For this idealised model, the fluid is treated as:
+
+- a **continuum**
+- **inviscid**
+- **incompressible**
+
+with **gravity** as the dominant body force.
+
+The governing momentum equation is Euler's equation:
+
+$$
+\rho\left(\frac{\partial \mathbf{u}}{\partial t} + \mathbf{u}\cdot\nabla \mathbf{u}\right)
+=
+-\nabla p - \rho g \,\hat{\mathbf{z}}
+$$
+
+This expresses momentum balance under the action of pressure and gravity.
+
+### Surface-wave velocity animation
+
+The presentation linked to a useful animation showing the underlying fluid motion beneath a travelling wave:
+
+ ![surface wave animation](/notes/fluid-waves/surface_wave_velocity.gif)
+
+---
+
+## Free-Surface Boundary Conditions
+
+The interface is described by
+
+$$
+z = \eta(x,y,t),
+$$
+
+where $\eta$ is the surface elevation.
+
+Two boundary conditions govern the free surface.
+
+### 1. Kinematic condition
+
+Fluid particles on the surface remain on the surface:
+
+$$
+\frac{D\eta}{Dt} = u_z
+$$
+
+This ensures that the interface moves consistently with the fluid velocity.
+
+### 2. Dynamic condition
+
+Pressure is continuous across the interface:
+
+$$
+P(x,y,\eta(x,y,t)) = P_0
+$$
+
+where $P_0$ is the atmospheric pressure.
+
+These conditions are what make free-surface problems interesting: the boundary is not fixed in advance, but must be solved for as part of the dynamics.
+
+---
+
+## Velocity Potential Formulation
+
+If the flow is **irrotational**, then we can write the velocity field as
+
+$$
+\mathbf{u} = \nabla \phi
+$$
+
+for a scalar velocity potential $\phi$.
+
+Incompressibility then gives
+
+$$
+\nabla^2 \phi = 0.
+$$
+
+So the bulk fluid motion is governed by Laplace's equation, while the dynamics are encoded through the boundary conditions.
+
+For a fluid of depth $H$, the bottom boundary condition is
+
+$$
+\frac{\partial \phi}{\partial z} = 0
+\qquad \text{at } z=-H.
+$$
+
+At the free surface $z=\eta$, the kinematic condition becomes
+
+$$
+\frac{\partial \phi}{\partial z} = \frac{D\eta}{Dt},
+$$
+
+and Bernoulli's equation gives the dynamic condition
+
+$$
+\rho\left(\frac{\partial \phi}{\partial t} + \frac{1}{2}|\nabla\phi|^2\right)_{z=\eta}
++ P_0 + \rho g \eta = f(t).
+$$
+
+This is a standard and very powerful reformulation of free-surface flow.
+
+![Surface wave geometry](/notes/fluid-waves/oceanwaves.png)
+
+---
+
+## Linear Wave Theory
+
+To extract the basic wave physics, we linearise about a flat free surface and seek travelling-wave solutions of the form
+
+$$
+\phi(x,z,t) = \phi_0(z)e^{ikx-i\omega t},
+\qquad
+\eta(x,t)=\eta_0 e^{ikx-i\omega t}.
+$$
+
+Solving Laplace's equation together with the linearised boundary conditions yields the dispersion relation
+
+$$
+\omega^2 = gk\tanh(kH).
+$$
+
+This is the key result of linear surface-wave theory.
+
+The phase speed is therefore
+
+$$
+c = \frac{\omega}{k},
+$$
+
+so unlike light in vacuum or classical sound in a simple medium, the wave speed depends on wavelength.
+
+---
+
+## Deep and Shallow Water Limits
+
+The dispersion relation has two especially important asymptotic limits.
+
+### Deep water: $kH \gg 1$
+
+Since $\tanh(kH)\approx 1$,
+
+$$
+\omega^2 \approx gk,
+\qquad
+c \approx \sqrt{\frac{g}{k}}.
+$$
+
+Long waves travel faster than short waves.
+
+### Shallow water: $kH \ll 1$
+
+Since $\tanh(kH)\approx kH$,
+
+$$
+\omega^2 \approx gk^2 H,
+\qquad
+c \approx \sqrt{gH}.
+$$
+
+In this regime, the wave speed depends only on depth.
+
+This explains why tsunamis can travel extremely quickly across the open ocean even when their surface expression appears modest offshore.
+
+---
+
+## Dispersion and Wave Speeds
+
+Dispersion means that different wavelengths propagate at different speeds. In deep water,
+
+$$
+c \propto \frac{1}{\sqrt{k}},
+$$
+
+so long waves outrun short waves. A localised disturbance therefore spreads out over time. This is one of the most important physical ideas in wave theory: the shape of a wave packet is not preserved if its Fourier components travel at different speeds.
+
+In shallow water the situation is different. Since $c \approx \sqrt{gH}$, the phase speed is independent of wavenumber. All Fourier components travel at the same speed, so wave packets propagate without dispersing. This is why the shallow-water equations can support sharp, coherent structures like bores and solitary waves.
+
+---
+
+## Visualising the Dispersion Relation
+
+The figure below shows the full dispersion relation $\omega^2 = gk\tanh(kH)$ alongside the deep and shallow water asymptotic limits.
+
+![Dispersion relation with deep and shallow water limits](/notes/fluid-waves/final.png)
+
+In the deep-water limit ($kH \gg 1$) the curve follows $\omega^2 \approx gk$, while in the shallow-water limit ($kH \ll 1$) it approaches $\omega^2 \approx gk^2 H$. The full relation smoothly interpolates between these two regimes. The crossover region, where $kH \sim \mathcal{O}(1)$, is where neither approximation is accurate and the full hyperbolic tangent is needed.
+
+---
+
+## A Special Case: the Kelvin Wake
+
+A particularly elegant consequence of surface-wave theory is the **Kelvin wake** (maybe at some point I will include a note on the Kelvin wave, since it has a lot of interesting theory itself, for now, enjoy this note).
+
+When an object moves across deep water, the wake it produces is confined to a fixed angle:
+
+$$
+19.28^\circ
+$$
+
+independent of the object's size or speed.
+
+This universality arises from:
+
+- the **dispersive** nature of surface gravity waves
+- the **superposition** of many wavelengths
+- simple **geometric constraints**
+
+It is a striking example of how linear wave theory can explain a visually complex real-world phenomenon. Reference the duck at the start!
+
+---
+
+## What This Example Teaches
+
+Free-surface waves are a good example of the standard modelling workflow in applied mathematics:
+
+1. start from governing equations
+2. identify the relevant boundary conditions
+3. simplify where appropriate
+4. solve and interpret the result physically
+
+They also raise important modelling questions:
+
+- Why is linearisation justified?
+- What physical effects are lost by neglecting viscosity or nonlinearity?
+- When does linear theory break down?
+- How do these ideas extend to nonlinear or data-driven PDE models?
+
+---
+
+## Closing Remarks
+
+Surface gravity waves sit at a very nice intersection of physics, mathematics, and modelling.
+
+They are simple enough to analyse, but rich enough to illustrate many ideas that recur throughout continuum mechanics:
+
+- PDE formulation
+- boundary-value problems
+- linearisation
+- dispersion
+- asymptotic limits
+- physically interpretable modelling
+
+That is part of what makes them such a useful gateway topic in fluid dynamics.
+
+---
+
+## References
+
+- D. Tong, *Lectures on Fluid Dynamics*
+- S. Howison, *Practical Applied Mathematics: Modelling, Analysis, Approximation*
+- G. K. Batchelor, *An Introduction to Fluid Dynamics*

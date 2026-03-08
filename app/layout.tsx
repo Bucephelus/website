@@ -41,6 +41,9 @@ export default function RootLayout({
               <Link href="/projects" className="text-muted hover:text-foreground transition-colors">
                 projects
               </Link>
+              <Link href="/notes" className="text-muted hover:text-foreground transition-colors">
+                notes
+              </Link>
             </div>
           </nav>
         </header>
