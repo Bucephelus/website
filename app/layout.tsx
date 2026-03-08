@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Link from "next/link";
-import ThemeToggle from "./components/theme-toggle";
+import Nav from "./components/nav";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -43,23 +42,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <header className="sticky top-0 z-50 border-b border-border backdrop-blur-md bg-background/80">
-          <nav className="mx-auto flex max-w-3xl items-center justify-between px-6 py-4">
-            <Link href="/" className="font-medium text-foreground no-underline hover:no-underline">
-              bucephelus
-            </Link>
-            <div className="flex items-center gap-6 text-sm">
-              <Link href="/" className="text-muted hover:text-foreground transition-colors">
-                home
-              </Link>
-              <Link href="/projects" className="text-muted hover:text-foreground transition-colors">
-                projects
-              </Link>
-              <Link href="/notes" className="text-muted hover:text-foreground transition-colors">
-                notes
-              </Link>
-              <ThemeToggle />
-            </div>
-          </nav>
+          <Nav />
         </header>
 
         <main className="mx-auto max-w-3xl px-6 py-16">{children}</main>

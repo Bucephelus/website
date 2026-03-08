@@ -6,7 +6,7 @@ export default function Home() {
       {/* hero / bio */}
       <section className="space-y-6">
         <div className="space-y-2">
-          <h1 className="text-3xl font-semibold tracking-tight text-foreground">
+          <h1 className="text-3xl font-semibold tracking-tight bg-gradient-to-r from-foreground via-accent to-foreground bg-[length:200%_auto] bg-clip-text text-transparent animate-shimmer">
             {bio.name}
           </h1>
           <p className="text-muted">
@@ -40,7 +40,7 @@ export default function Home() {
           {researchInterests.map((interest) => (
             <div
               key={interest.title}
-              className="rounded-lg border border-border bg-card p-4 space-y-2 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-[0_0_12px_rgba(167,139,250,0.08)]"
+              className="rounded-lg border border-border bg-card p-4 space-y-2 transition-all duration-250 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:border-accent/40 hover:shadow-[0_4px_20px_rgba(167,139,250,0.12)]"
             >
               <h3 className="text-sm font-medium text-foreground">
                 {interest.title}

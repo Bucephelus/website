@@ -24,7 +24,7 @@ export default function ProjectsPage() {
         {sorted.map((project) => (
           <div
             key={project.slug}
-            className="rounded-lg border border-border bg-card p-6 space-y-3"
+            className="rounded-lg border border-border bg-card p-6 space-y-3 transition-all duration-250 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:border-accent/40 hover:shadow-[0_4px_20px_rgba(167,139,250,0.12)]"
           >
             <div className="flex items-baseline justify-between gap-4">
               <h2 className="font-medium text-foreground">{project.title}</h2>
