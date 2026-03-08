@@ -15,10 +15,11 @@ export const bio = {
   institution: "university of bristol",
   department: "school of engineering maths and technology",
   summary:
-    "i am a phd student on the data-driven engineering and sciences program. working at the broad intersection of machine learning and engineering systems. in terms of application areas, i am a generalist although, i have a particular interest in space physics/systems and robotics.",
+    "i am a phd student on the data-driven engineering and sciences program. working at the broad intersection of machine learning and engineering systems. in terms of application areas i am a generalist, although i have a particular interest in space physics/systems and robotics.",
   email: "qu21443@bristol.ac.uk",
   links: [
     { label: "github", href: "https://github.com/Bucephelus"},
+    { label: "email", href: "mailto:qu21443@bristol.ac.uk" },
   ],
 };
 
