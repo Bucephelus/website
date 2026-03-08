@@ -3,6 +3,7 @@
 import Link from "next/link";
 
 import ThemeToggle from "./theme-toggle";
+import Clock from "./clock";
 
 const links = [
   { href: "/", label: "home" },
@@ -13,9 +14,12 @@ const links = [
 export default function Nav() {
   return (
     <nav className="mx-auto flex max-w-3xl items-center justify-between px-6 py-4">
-      <Link href="/" className="font-medium text-foreground no-underline hover:no-underline">
-        bucephelus
-      </Link>
+      <div className="flex items-center gap-3">
+        <Link href="/" className="font-medium text-foreground no-underline hover:no-underline">
+          bucephelus
+        </Link>
+        <Clock />
+      </div>
       <div className="flex items-center gap-6 text-sm">
         {links.map(({ href, label }) => (
           <Link

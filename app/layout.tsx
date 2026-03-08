@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Nav from "./components/nav";
+import PacmanBg from "./components/pacman-bg";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -41,6 +42,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <PacmanBg />
         <header className="sticky top-0 z-50 border-b border-border backdrop-blur-md bg-background/80">
           <Nav />
         </header>
