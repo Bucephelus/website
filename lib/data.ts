@@ -10,12 +10,12 @@ export type Project = {
 };
 
 export const bio = {
-  name: "jason mclaren",
-  title: "phd student",
-  institution: "university of bristol",
-  department: "school of engineering maths and technology",
+  name: "Jason Mclaren",
+  title: "PhD student",
+  institution: "University of Bristol",
+  department: "School of Engineering Maths and Technology",
   summary:
-    "i am a phd student on the data-driven engineering and sciences program. working at the broad intersection of machine learning and engineering systems. in terms of application areas i am a generalist, although i have a particular interest in space physics/systems and robotics.",
+    "I am a PhD student on the Data-Driven Engineering and Sciences program. I work at the broad intersection of machine learning and engineering systems. In terms of application areas I am a generalist, although I have a particular interest in space physics/systems and robotics.",
   email: "qu21443@bristol.ac.uk",
   links: [
     { label: "github", href: "https://github.com/Bucephelus"},
@@ -25,34 +25,34 @@ export const bio = {
 
 export const researchInterests = [
   {
+    title: "scientific machine learning",
+    description:
+      "developing machine learning methods that integrate physical models and data to analyse and predict complex dynamical systems.",
+  },
+  {
+    title: "data-driven dynamical systems",
+    description:
+      "learning governing equations and low-dimensional representations of nonlinear systems using techniques such as system identification.",
+  },
+  {
+    title: "reduced-order modelling",
+    description:
+      "implementing efficient low-dimensional models of high-dimensional physical systems to enable fast simulation, control, and real-time prediction.",
+  },
+  {
+    title: "nonlinear dynamics",
+    description:
+      "studying emergent behaviour, instabilities, and pattern formation in nonlinear systems arising in physics and engineering.",
+  },
+  {
     title: "optimisation",
     description:
-      "gaussian processes, bayesian neural networks, and uncertainty quantification for engineering models.",
+      "optimisation methods for learning, control, and model discovery in complex systems",
   },
   {
-    title: "structural health monitoring",
+    title: "computational physics",
     description:
-      "data-driven approaches for damage detection, localisation, and prognosis in engineering structures.",
-  },
-  {
-    title: "physics-informed learning",
-    description:
-      "embedding domain knowledge and physical constraints into machine learning architectures.",
-  },
-  {
-    title: "digital twins",
-    description:
-      "creating adaptive computational models that evolve with their physical counterparts using streaming data.",
-  },
-  {
-    title: "transfer learning",
-    description:
-      "population-based approaches for sharing information across heterogeneous engineering structures.",
-  },
-  {
-    title: "active learning",
-    description:
-      "optimal experimental design and sensor placement for resource-efficient data acquisition.",
+      "implementing computational tools to study physical systems and combine numerical modelling with machine learning approaches.",
   },
 ];
 
