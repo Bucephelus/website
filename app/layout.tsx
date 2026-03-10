@@ -15,9 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "jason mclaren — researcher",
+  title: "jason mclaren — phd student",
   description:
-    "phd researcher in data-driven engineering and science at the university of bristol.",
+    "PhD student in data-driven engineering and sciences at the University of Bristol.",
 };
 
 const themeScript = `
