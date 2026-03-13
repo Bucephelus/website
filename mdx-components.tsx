@@ -1,4 +1,5 @@
 import type { MDXComponents } from "mdx/types";
+import { ImageLightbox } from "@/app/components/image-lightbox";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -69,10 +70,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <td className="border border-border px-3 py-2 text-foreground/90" {...props} />
     ),
     hr: (props) => <hr className="my-8 border-border" {...props} />,
-    img: (props) => (
-      // eslint-disable-next-line @next/next/no-img-element
-      <img className="my-4 rounded-lg" alt="" {...props} />
-    ),
+    img: (props) => <ImageLightbox {...props} />,
     ...components,
   };
 }
