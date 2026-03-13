@@ -53,6 +53,16 @@ export default function Home() {
         </div>
       </section>
 
+      {/* easter egg hint */}
+      <section>
+        <div className="rounded-lg border border-border bg-card p-4 text-sm text-muted">
+          <span className="text-foreground/70">psst...</span> try typing{" "}
+          <span className="font-mono text-accent">
+            ↑ ↑ ↓ ↓ ← → ← → B A
+          </span>
+        </div>
+      </section>
+
     </div>
   );
 }

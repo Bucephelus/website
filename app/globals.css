@@ -95,6 +95,18 @@ a:hover {
   overflow-y: hidden;
 }
 
+/* Konami code easter egg */
+.konami-flip {
+  animation: konami-flip 3s ease-in-out;
+}
+
+@keyframes konami-flip {
+  0%   { transform: rotate(0deg); }
+  30%  { transform: rotate(180deg); }
+  70%  { transform: rotate(180deg); }
+  100% { transform: rotate(360deg); }
+}
+
 /* Image lightbox animations */
 @keyframes lightbox-fade-in {
   from { opacity: 0; }

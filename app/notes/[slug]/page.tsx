@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getAllNoteSlugs, getNoteMetadata } from "@/lib/notes";
+import { ReadingProgress } from "@/app/components/reading-progress";
 
 export const dynamicParams = false;
 
@@ -43,6 +44,7 @@ export default async function NotePage({
 
   return (
     <article>
+      <ReadingProgress />
       <header className="mb-10 space-y-3">
         <h1 className="text-2xl font-semibold tracking-tight text-foreground">
           {meta.title}
