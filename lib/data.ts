@@ -19,6 +19,7 @@ export const bio = {
   email: "qu21443@bristol.ac.uk",
   links: [
     { label: "github", href: "https://github.com/Bucephelus"},
+    { label: "linkedin", href: "https://www.linkedin.com/in/jasonmclareneee/"},
     { label: "email", href: "mailto:qu21443@bristol.ac.uk" },
   ],
 };
@@ -46,16 +47,49 @@ export const researchInterests = [
   },
 ];
 
+export type TimelineEvent = {
+  year: string;
+  title: string;
+  description: string;
+  category: "education" | "work" | "award" | "publication" | "milestone";
+};
+
+export const timeline: TimelineEvent[] = [
+  {
+    year: "Sep 2025",
+    title: "Started PhD — University of Bristol",
+    description:
+      "Began the Data-Driven Engineering and Sciences doctoral program, researching at the intersection of machine learning and engineering systems.",
+    category: "education",
+  },
+  {
+    year: "Sep 2021 - Aug 2025",
+    title: "Graduated MEng — University of Bristol",
+    description:
+      "Completed a Master of Engineering degree in Electrical and Electronic Engineering. Final year project focused on designing and simulating apodised Bragg cavities for quantum photonics applications.",
+    category: "education",
+  },
+  {
+    year: "Sep 2014 - Aug 2021",
+    title: "Graduated Sixth Form - Churchill Academy and Sixth Form",
+    description:
+      "Maths, Biology, and Chemistry A-Levels. Couldn't decide between engineering and medicine...the crossroads of life.",
+    category: "education",
+  },
+
+  // Add more events here
+];
+
 export const projects: Project[] = [
   {
     slug: "apodised-bragg-reflector",
-    title: "apodised bragg reflector design for low-scattering photonic waveguides",
+    title: "a study on apodised distributed Bragg reflectors (DBRs) at 1550nm",
     description:
       "investigated the effect of apodisation profiles on sidewall Bragg reflector gratings in integrated photonic waveguides. using FDTD simulations in Lumerical, the project analysed how smoothly varying grating amplitudes reduce scattering loss and improve reflectivity by suppressing abrupt index discontinuities.",
     tags: ["photonics", "bragg gratings", "fdtd", "lumerical", "waveguides"],
     year: 2025,
     featured: true,
-    link: "",
+    link: "/papers/irp.pdf",
     github: "",
   },
 

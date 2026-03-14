@@ -7,6 +7,7 @@ import Clock from "./clock";
 
 const links = [
   { href: "/", label: "home" },
+  { href: "/timeline", label: "timeline" },
   { href: "/projects", label: "projects" },
   { href: "/notes", label: "notes" },
 ];
